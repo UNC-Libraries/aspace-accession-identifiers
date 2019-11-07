@@ -1,0 +1,5 @@
+#accession_form .identifier-fields select {
+    margin-right: 4px;
+    width: auto;
+    display: inline-block;
+}
