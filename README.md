@@ -1,13 +1,48 @@
-This plugin adds automatic identifier generation to the "Create
-Accession" form.  
+ArchivesSpace Accession Identifiers Plugin
+===============
 
+This plugin changes how accession identifiers are created in the "Create Accession" form.
+
+### First component: 
+This plugin adds an "Accession Collection Code" controlled value list.
+In the Create/Edit Accession forms, staff can select a first identifier component from this dropdown list.
+
+### Second component:
 The second component will be pre-filled as:
 
   YYYYMMDD.N
 
 Where YYYYMMDD is the current date, and N is a sequence number starting with 1.
 
-To install, just activate the plugin in your config/config.rb file by
-including an entry such as:
+Adapted from sample [generate_accession_identifiers](https://github.com/archivesspace/archivesspace/tree/master/plugins/generate_accession_identifiers) plugin from ArchivesSpace.
 
-     AppConfig[:plugins] = ['generate_accession_identifiers']
+## Getting Started
+
+Clone repository in ArchivesSpace plugins directory:
+
+    $ cd /path/to/archivesspace/plugins
+    $ git clone git@gitlab.lib.unc.edu:cappdev/aspace-accession-identifiers.git accession_identifiers
+
+Enable the plugin by editing the file in `config/config.rb`:
+
+    AppConfig[:plugins] = ['accession_identifiers']
+
+(Make sure you uncomment this line.)
+
+See also:
+
+  https://github.com/archivesspace/archivesspace/blob/master/plugins/README.md
+
+You will need to restart archivesspace to enable config changes and migrate the database:
+
+     $ cd /path/to/archivesspace
+     $ sudo service.sh archivesspace stop
+     $ sudo rm -rf data/indexer_pui_state
+     $ sudo rm -rf data/indexer_state
+     $ scripts/setup-database.sh
+     $ sudo service.sh archivesspace start
+
+See also:
+
+  https://github.com/archivesspace/archivesspace/blob/master/UPGRADING.md
+

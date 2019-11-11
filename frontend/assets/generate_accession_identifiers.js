@@ -12,13 +12,7 @@ $(function () {
 
 
   var identifier_is_blank = function () {
-    for (var i = 0; i < 4; i++) {
-      if ($("#accession_id_" + i + "_").val() !== "") {
-        return false;
-      }
-    }
-
-    return true;
+    $("#accession_id_1_").val() !== "";
   };
 
 

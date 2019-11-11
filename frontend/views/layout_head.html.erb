@@ -2,6 +2,6 @@
   <%= javascript_include_tag "#{@base_url}/assets/generate_accession_identifiers.js" %>
 <% end %>
 
-<% if controller.controller_name == 'accessions' && ['edit', 'new', 'create'].include?(controller.action_name) %>
+<% if controller.controller_name == 'accessions' %>
   <%= stylesheet_link_tag "#{@base_url}/assets/accession_identifier.css" %>
 <% end %>
