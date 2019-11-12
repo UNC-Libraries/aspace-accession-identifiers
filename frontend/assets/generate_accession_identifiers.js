@@ -12,7 +12,7 @@ $(function () {
 
 
   var identifier_is_blank = function () {
-    $("#accession_id_1_").val() !== "";
+    return $('#accession_id_1_').val().length === 0;
   };
 
 

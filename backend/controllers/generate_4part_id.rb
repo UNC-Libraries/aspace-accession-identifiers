@@ -8,7 +8,7 @@ class ArchivesSpaceService < Sinatra::Base
     .permissions([])
     .returns([200, "{'number', N}"]) \
   do
-    date = Time.now.strftime('%Y%m%d')
+    date = Time.now.getlocal('-05:00').strftime('%Y%m%d')
     sequence_val = Sequence.get("GENERATE_ACCESSION_IDENTIFIER_#{date}")
     number = "#{date}.#{sequence_val + 1}"
 
