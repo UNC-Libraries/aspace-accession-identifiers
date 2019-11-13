@@ -3,14 +3,11 @@ module AspaceFormHelper
   class FormContext
 
     def label_and_fourpartid
-      field_html = @active_template == 'accession' ? accession_id_0_field : original_id_0_field
-      field_html << textfield("id_1", obj["id_1"], {:class => "id_1 form-control",
-                                                    :size => 10,
-                                                    :disabled => obj["id_0"].blank? && obj["id_1"].blank? && @active_template != 'accession',
-                                                    :'aria-label' => "id_1"})
+      field_html = accession_id_0_field
+      field_html << accession_id_1_field
       field_html << textfield("id_2", obj["id_2"], {:class => "id_2 form-control",
                                                     :size => 10,
-                                                    :disabled => obj["id_1"].blank? && obj["id_2"].blank? && @active_template != 'accession',
+                                                    :disabled => @active_template != 'accession' && obj["id_1"].blank? && obj["id_2"].blank?,
                                                     :'aria-label' => "id_2"})
       field_html << textfield("id_3", obj["id_3"], {:class => "id_3 form-control",
                                                     :size => 10,
@@ -27,8 +24,30 @@ module AspaceFormHelper
       textfield("id_0", obj["id_0"], :class => "id_0 form-control", :size => 10)
     end
 
+    def original_id_1_field
+      textfield("id_1", obj["id_1"], :class => "id_1 form-control", :size => 10, :disabled => obj["id_0"].blank? && obj["id_1"].blank?, :'aria-label' => "id_1")
+    end
+
     def accession_id_0_field
-      select("id_0", possible_options_for("id_0", true, :class => "id_0 form-control", :size => 10))
+      if @active_template == 'accession'
+        select("id_0", possible_options_for("id_0", true, :class => "id_0 form-control", :size => 10))
+      else
+        original_id_0_field
+      end
+    end
+
+    def accession_id_1_field
+      if @active_template == 'accession' && @parent.action_name != 'edit'
+        if @parent.action_name == 'defaults'
+          "<em>#{I18n.t("accession.id_1_auto_generated")}</em>".html_safe
+        else
+          date = Time.now.getlocal('-05:00').strftime('%Y%m%d')
+
+          "<em class='id_1_placeholder'>#{date}.#</em>".html_safe
+        end
+      else
+        original_id_1_field
+      end
     end
 
   end
