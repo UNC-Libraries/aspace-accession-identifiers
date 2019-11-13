@@ -8,7 +8,7 @@ This plugin adds an "Accession Collection Code" controlled value list.
 In the Create/Edit Accession forms, staff can select a first identifier component from this dropdown list.
 
 ### Second component:
-The second component will be pre-filled as:
+The second component will be auto-generated on record creation as:
 
   YYYYMMDD.N
 
