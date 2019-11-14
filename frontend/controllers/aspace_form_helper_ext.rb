@@ -11,7 +11,7 @@ module AspaceFormHelper
                                                     :'aria-label' => "id_2"})
       field_html << textfield("id_3", obj["id_3"], {:class => "id_3 form-control",
                                                     :size => 10,
-                                                    :disabled => obj["id_2"].blank? && obj["id_3"].blank?,
+                                                    :disabled => @active_template != 'accession' && obj["id_2"].blank? && obj["id_3"].blank?,
                                                     :'aria-label' => "id_3"})
 
       @forms.content_tag(:div, (I18n.t(i18n_for("id_0")) + field_html).html_safe, :class=> "identifier-fields")
@@ -43,7 +43,9 @@ module AspaceFormHelper
         else
           date = Time.now.getlocal('-05:00').strftime('%Y%m%d')
 
-          "<em class='id_1_placeholder'>#{date}.#</em>".html_safe
+          # Validation checks require id_1 to exist if id_2 or id_3 exist
+          # Add hidden input with id_1 value that will be replaced in create_from_json
+          ("<em class='id_1_placeholder'>#{date}.#</em>" + hidden_input("id_1", "REPLACE")).html_safe
         end
       else
         original_id_1_field

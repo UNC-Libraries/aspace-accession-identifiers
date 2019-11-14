@@ -14,7 +14,7 @@ module AccessionIdentifier
   module ClassMethods
     def create_from_json(json, opts={})
       # Can't add to Accession.properties_to_auto_generate because needs to happen before identifier is set below
-      json[:id_1] = json[:id_1] || auto_generate_id_1
+      json[:id_1] = auto_generate_id_1
 
       # Kinda clunky way of forcing identifier in db to get set from id_0
       # Otherwise, bc id_0 is not a dynamic_enum in schema, id_0 from json just gets sent to id_0_id
