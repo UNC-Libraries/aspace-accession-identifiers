@@ -37,15 +37,16 @@ module AspaceFormHelper
     end
 
     def accession_id_1_field
-      if @active_template == 'accession' && @parent.action_name != 'edit'
+      if @active_template == 'accession'
         if @parent.action_name == 'defaults'
           "<em>#{I18n.t("accession.id_1_auto_generated")}</em>".html_safe
         else
           date = Time.now.getlocal('-05:00').strftime('%Y%m%d')
+          placeholder = obj["id_1"] || "#{date}.#"
 
           # Validation checks require id_1 to exist if id_2 or id_3 exist
           # Add hidden input with id_1 value that will be replaced in create_from_json
-          ("<em class='id_1_placeholder'>#{date}.#</em>" + hidden_input("id_1", "REPLACE")).html_safe
+          ("<em class='id_1_placeholder'>#{placeholder}</em>" + hidden_input("id_1", placeholder)).html_safe
         end
       else
         original_id_1_field
