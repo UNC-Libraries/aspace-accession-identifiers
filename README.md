@@ -46,3 +46,8 @@ See also:
 
   https://github.com/archivesspace/archivesspace/blob/master/UPGRADING.md
 
+## Upgrading ASpace
+
+When upgrading to future ASpace releases, check the following overridden files or methods for updated code:
+
+- `frontend/app/helpers/aspace_form_helper.rb#label_and_fourpartid`
