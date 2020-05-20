@@ -34,7 +34,7 @@ Enable the plugin by editing the file in `config/config.rb`:
 
 See also:
 
-  https://github.com/archivesspace/archivesspace/blob/master/plugins/README.md
+  http://archivesspace.github.io/archivesspace/user/archivesspace-plug-ins/
 
 To add initial acccession collection code values, edit `COLLECTION_CODES` in the migration file: 
 `migrations/002_add_accession_collection_code_enumeration.rb`. Alternatively, you can leave this blank 
@@ -48,10 +48,6 @@ You will need to restart archivesspace to enable config changes and migrate the 
      $ sudo rm -rf data/indexer_state
      $ scripts/setup-database.sh
      $ sudo service.sh archivesspace start
-
-See also:
-
-  https://github.com/archivesspace/archivesspace/blob/master/UPGRADING.md
 
 ## Upgrading ASpace
 
