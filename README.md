@@ -7,6 +7,9 @@ This plugin changes how accession identifiers are created in the "Create Accessi
 This plugin adds an "Accession Collection Code" controlled value list.
 In the Create/Edit Accession forms, staff can select a first identifier component from this dropdown list.
 
+Staff with permission to edit controlled value lists can add and delete additional collection codes by selecting 
+"Accession Collection Code" in the "Manage Controlled Value Lists" dropdown.
+
 ### Second component:
 The second component will be auto-generated on record creation as:
 
@@ -32,6 +35,10 @@ Enable the plugin by editing the file in `config/config.rb`:
 See also:
 
   https://github.com/archivesspace/archivesspace/blob/master/plugins/README.md
+
+To add initial acccession collection code values, edit `COLLECTION_CODES` in the migration file: 
+`migrations/002_add_accession_collection_code_enumeration.rb`. Alternatively, you can leave this blank 
+and manage this list in the controlled value list of the staff UI.
 
 You will need to restart archivesspace to enable config changes and migrate the database:
 
